@@ -1,6 +1,12 @@
 package net.hakivin.hakismob;
 
 import com.mojang.logging.LogUtils;
+import net.hakivin.hakismob.entity.HakisMobEntities;
+import net.hakivin.hakismob.entity.client.PalliateRenderer;
+import net.hakivin.hakismob.entity.world.Palliate;
+import net.hakivin.hakismob.item.HakisMobItems;
+import net.minecraft.client.renderer.entity.EntityRenderers;
+import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
@@ -24,6 +30,9 @@ public class HakisMob {
     public HakisMob() {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
+        HakisMobItems.register(modEventBus);
+        HakisMobEntities.registerEvent(modEventBus);
+
         // Register the commonSetup method for modloading
         modEventBus.addListener(this::commonSetup);
 
@@ -40,7 +49,9 @@ public class HakisMob {
 
     // Add the example block item to the building blocks tab
     private void addCreative(BuildCreativeModeTabContentsEvent event) {
-
+        if (event.getTabKey() == CreativeModeTabs.SPAWN_EGGS) {
+            event.accept(HakisMobItems.PALLIATE_SPAWN_EGG);
+        }
     }
 
     // You can use SubscribeEvent and let the Event Bus discover methods to call
@@ -54,7 +65,7 @@ public class HakisMob {
     public static class ClientModEvents {
         @SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event) {
-
+            EntityRenderers.register(HakisMobEntities.PALLIATE.get(), PalliateRenderer::new);
         }
     }
 }
