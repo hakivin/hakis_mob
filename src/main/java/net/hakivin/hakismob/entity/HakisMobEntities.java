@@ -27,7 +27,7 @@ public class HakisMobEntities {
 
     public static final RegistryObject<EntityType<SmallIceShard>> SMALL_ICE_SHARD =
             ENTITY_TYPES.register("small_ice_shard", () -> EntityType.Builder.<SmallIceShard>of(SmallIceShard::new, MobCategory.MISC)
-                    .fireImmune().sized(0.2F, 0.2F).clientTrackingRange(4)
+                    .fireImmune().sized(0.2F, 0.3F).clientTrackingRange(4)
                     .updateInterval(10).build("small_ice_shard"));
 
     public static void registerEvent(IEventBus eventBus) {
