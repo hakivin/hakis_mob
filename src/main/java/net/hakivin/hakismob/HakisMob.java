@@ -2,11 +2,14 @@ package net.hakivin.hakismob;
 
 import com.mojang.logging.LogUtils;
 import net.hakivin.hakismob.entity.HakisMobEntities;
+import net.hakivin.hakismob.entity.client.FrostRenderer;
+import net.hakivin.hakismob.entity.client.IceShardRenderer;
 import net.hakivin.hakismob.entity.client.PalliateRenderer;
-import net.hakivin.hakismob.entity.world.Palliate;
 import net.hakivin.hakismob.item.HakisMobItems;
 import net.minecraft.client.renderer.entity.EntityRenderers;
+import net.minecraft.client.renderer.entity.ThrownItemRenderer;
 import net.minecraft.world.item.CreativeModeTabs;
+import net.minecraft.world.level.block.PointedDripstoneBlock;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
@@ -51,6 +54,7 @@ public class HakisMob {
     private void addCreative(BuildCreativeModeTabContentsEvent event) {
         if (event.getTabKey() == CreativeModeTabs.SPAWN_EGGS) {
             event.accept(HakisMobItems.PALLIATE_SPAWN_EGG);
+            event.accept(HakisMobItems.FROST_SPAWN_EGG);
         }
     }
 
@@ -66,6 +70,10 @@ public class HakisMob {
         @SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event) {
             EntityRenderers.register(HakisMobEntities.PALLIATE.get(), PalliateRenderer::new);
+            EntityRenderers.register(HakisMobEntities.FROST.get(), FrostRenderer::new);
+            EntityRenderers.register(HakisMobEntities.SMALL_ICE_SHARD.get(), pContext -> {
+                return new ThrownItemRenderer<>(pContext, 1.0F, true);
+            });
         }
     }
 }

@@ -3,6 +3,8 @@ package net.hakivin.hakismob.entity.world;
 import net.hakivin.hakismob.entity.HakisMobEntities;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.protocol.Packet;
+import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
@@ -45,6 +47,7 @@ import net.minecraft.world.level.pathfinder.BlockPathTypes;
 import net.minecraft.world.level.pathfinder.WalkNodeEvaluator;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
+import net.minecraftforge.network.NetworkHooks;
 
 import javax.annotation.Nullable;
 import java.util.EnumSet;
@@ -278,7 +281,6 @@ public class Palliate extends TamableAnimal {
             if (!Palliate.this.isTame()) return false;
             LivingEntity livingentity = Palliate.this.getTarget();
             if (livingentity != null && livingentity.isAlive() && !Palliate.this.getMoveControl().hasWanted()) { // TODO: && Palliate.this.random.nextInt(reducedTickDelay(7)) == 0) {
-                System.out.println("charge attack: can use " + (Palliate.this.distanceToSqr(livingentity) > 4.0D));
                 return Palliate.this.distanceToSqr(livingentity) > 4.0D;
             } else {
                 return false;
@@ -289,7 +291,6 @@ public class Palliate extends TamableAnimal {
          * Returns whether an in-progress EntityAIBase should continue executing
          */
         public boolean canContinueToUse() {
-            System.out.println("charge attack: canContinueToUse " + (Palliate.this.getMoveControl().hasWanted() && Palliate.this.isCharging() && Palliate.this.getTarget() != null && Palliate.this.getTarget().isAlive()));
             return Palliate.this.getMoveControl().hasWanted() && Palliate.this.isCharging() && Palliate.this.getTarget() != null && Palliate.this.getTarget().isAlive();
         }
 
@@ -673,5 +674,10 @@ public class Palliate extends TamableAnimal {
         private int randomIntInclusive(int pMin, int pMax) {
             return this.tamable.getRandom().nextInt(pMax - pMin + 1) + pMin;
         }
+    }
+
+    @Override
+    public Packet<ClientGamePacketListener> getAddEntityPacket() {
+        return NetworkHooks.getEntitySpawningPacket(this);
     }
 }

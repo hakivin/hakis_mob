@@ -16,6 +16,10 @@ public class HakisMobItems {
             () -> new ForgeSpawnEggItem(HakisMobEntities.PALLIATE,
                     56063, 44543, new Item.Properties()));
 
+    public static final RegistryObject<Item> FROST_SPAWN_EGG = ITEMS.register("frost_spawn_egg",
+            () -> new ForgeSpawnEggItem(HakisMobEntities.FROST,
+                    15658718, 14014157, new Item.Properties()));
+
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);
     }

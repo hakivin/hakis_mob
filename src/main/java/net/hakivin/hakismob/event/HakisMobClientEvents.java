@@ -2,6 +2,8 @@ package net.hakivin.hakismob.event;
 
 import net.hakivin.hakismob.HakisMob;
 import net.hakivin.hakismob.entity.client.HakisMobLayers;
+import net.hakivin.hakismob.entity.model.FrostModel;
+import net.hakivin.hakismob.entity.model.IceShardModel;
 import net.hakivin.hakismob.entity.model.PalliateModel;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.EntityRenderersEvent;
@@ -14,5 +16,7 @@ public class HakisMobClientEvents {
     @SubscribeEvent
     public static void registerEntityRenderers(EntityRenderersEvent.RegisterLayerDefinitions event) {
         event.registerLayerDefinition(HakisMobLayers.PALLIATE_LAYER, PalliateModel::createBodyLayer);
+        event.registerLayerDefinition(HakisMobLayers.FROST_LAYER, FrostModel::createBodyLayer);
+        event.registerLayerDefinition(HakisMobLayers.ICE_SHARD_LAYER, IceShardModel::createBodyLayer);
     }
 }

@@ -13,7 +13,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 @OnlyIn(Dist.CLIENT)
 public class PalliateRenderer extends MobRenderer<Palliate, PalliateModel> {
     private static final ResourceLocation PALLIATE_LOCATION =
-            new ResourceLocation("hakis_mob:textures/entities/palliate.png");
+            new ResourceLocation("hakis_mob:textures/entities/palliate_yellow.png");
     private static final ResourceLocation PALLIATE_CHARGING_LOCATION =
             new ResourceLocation("hakis_mob:textures/entities/palliate_charging.png");
 
