@@ -13,6 +13,7 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 
 public abstract class IceShard extends AbstractHurtingProjectile implements ItemSupplier {
+
     private static final EntityDataAccessor<ItemStack> DATA_ITEM_STACK = SynchedEntityData.defineId(IceShard.class, EntityDataSerializers.ITEM_STACK);
 
     public IceShard(EntityType<? extends IceShard> pEntityType, Level pLevel) {

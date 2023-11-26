@@ -22,7 +22,7 @@ public class IceShardModel<T extends Entity> extends EntityModel<T> {
         MeshDefinition meshdefinition = new MeshDefinition();
         PartDefinition partdefinition = meshdefinition.getRoot();
 
-        PartDefinition root = partdefinition.addOrReplaceChild("root", CubeListBuilder.create(), PartPose.offsetAndRotation(0.0F, 10.0F, -1.0F, -3.1416F, 0.0F, 0.0F));
+        PartDefinition root = partdefinition.addOrReplaceChild("root", CubeListBuilder.create(), PartPose.offsetAndRotation(1.0F, -5.0F, -2.0F, 3.1416F, 0.0F, 3.1416F));
 
         PartDefinition back = root.addOrReplaceChild("back", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, 3.0F, -2.0F, 1.0F, 1.0F, 3.0F, new CubeDeformation(0.0F))
                 .texOffs(11, 12).addBox(-1.0F, 2.0F, -5.0F, 1.0F, 1.0F, 8.0F, new CubeDeformation(0.0F))

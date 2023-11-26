@@ -13,6 +13,9 @@ import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.minecraft.world.item.ItemDisplayContext;
+import org.joml.Vector3d;
+
+import java.util.Vector;
 
 public class IceShardRenderer extends EntityRenderer<IceShard> {
     private final IceShardModel model;
@@ -27,7 +30,7 @@ public class IceShardRenderer extends EntityRenderer<IceShard> {
     @Override
     public void render(IceShard pEntity, float pEntityYaw, float pPartialTicks, PoseStack pPoseStack, MultiBufferSource pBuffer, int pPackedLight) {
         pPoseStack.pushPose();
-        pPoseStack.mulPose(Axis.YP.rotationDegrees(Mth.lerp(pPartialTicks, pEntity.yRotO, pEntity.getYRot())));
+        pPoseStack.mulPose(Axis.YP.rotationDegrees(180.0F - pEntityYaw));
         VertexConsumer vertexconsumer = pBuffer.getBuffer(this.model.renderType(this.getTextureLocation(pEntity)));
         this.model.renderToBuffer(pPoseStack, vertexconsumer, pPackedLight, OverlayTexture.NO_OVERLAY, 1.0F, 1.0F, 1.0F, 1.0F);
         pPoseStack.popPose();
