@@ -71,9 +71,7 @@ public class HakisMob {
         public static void onClientSetup(FMLClientSetupEvent event) {
             EntityRenderers.register(HakisMobEntities.PALLIATE.get(), PalliateRenderer::new);
             EntityRenderers.register(HakisMobEntities.FROST.get(), FrostRenderer::new);
-            EntityRenderers.register(HakisMobEntities.SMALL_ICE_SHARD.get(), pContext -> {
-                return new ThrownItemRenderer<>(pContext, 1.0F, true);
-            });
+            EntityRenderers.register(HakisMobEntities.SMALL_ICE_SHARD.get(), IceShardRenderer::new);
         }
     }
 }

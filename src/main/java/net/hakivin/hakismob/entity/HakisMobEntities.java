@@ -23,11 +23,11 @@ public class HakisMobEntities {
 
     public static final RegistryObject<EntityType<Frost>> FROST =
             ENTITY_TYPES.register("frost", () -> EntityType.Builder.of(Frost::new, MobCategory.CREATURE)
-                    .sized(0.7F, 0.6F).clientTrackingRange(8).build("frost"));
+                    .sized(0.6F, 1.8F).clientTrackingRange(8).build("frost"));
 
     public static final RegistryObject<EntityType<SmallIceShard>> SMALL_ICE_SHARD =
             ENTITY_TYPES.register("small_ice_shard", () -> EntityType.Builder.<SmallIceShard>of(SmallIceShard::new, MobCategory.MISC)
-                    .fireImmune().sized(1.0F, 1.0F).clientTrackingRange(4)
+                    .fireImmune().sized(0.2F, 0.2F).clientTrackingRange(4)
                     .updateInterval(10).build("small_ice_shard"));
 
     public static void registerEvent(IEventBus eventBus) {
